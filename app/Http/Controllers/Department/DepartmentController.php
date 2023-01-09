@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Http\Controllers\Department;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Department\StoreRequest;
+use App\Http\Requests\Department\UpdateRequest;
+use App\Models\Department;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+class DepartmentController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
+    {
+        $data = Department::all();
+        return response()->json($data);
+    }
+
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param StoreRequest $request
+     * @return JsonResponse
+     */
+    public function store(StoreRequest $request): JsonResponse
+    {
+        $data = Department::query()->create($request->validated());
+        return response()->json($data);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param Department $department
+     * @return JsonResponse
+     */
+    public function show(Department $department): JsonResponse
+    {
+        return response()->json($department);
+    }
+
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param UpdateRequest $request
+     * @param Department $department
+     * @return JsonResponse
+     */
+    public function update(UpdateRequest $request, Department $department): JsonResponse
+    {
+        $department->update($request->validated());
+        return response()->json($department);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Department $department
+     * @return JsonResponse
+     */
+    public function delete(Department $department): JsonResponse
+    {
+        $department->delete();
+        return response()->json([
+               'message'=>'Успешно удалено!'
+        ]);
+    }
+}

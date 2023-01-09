@@ -48,5 +48,19 @@ Route::prefix('v1')->group(function () {
         Route::put('{measurement}', [MeasurementController::class, 'update']);
         Route::delete('{measurement}', [MeasurementController::class, 'delete']);
     });
+    Route::prefix('filial')->group(function () {
+        Route::get('', [\App\Http\Controllers\FilialController::class,'index']);
+        Route::get('{filial}', [\App\Http\Controllers\FilialController::class, 'show']);
+        Route::post('', [\App\Http\Controllers\FilialController::class, 'store']);
+        Route::put('{filial}', [\App\Http\Controllers\FilialController::class, 'update']);
+        Route::delete('{filial}', [\App\Http\Controllers\FilialController::class, 'delete']);
+    });
+    Route::prefix('department')->group(function (){
 
+        Route::get('', [\App\Http\Controllers\Department\DepartmentController::class, 'index']);
+        Route::get('{department}', [\App\Http\Controllers\Department\DepartmentController::class, 'show']);
+        Route::post('', [\App\Http\Controllers\Department\DepartmentController::class, 'store']);
+        Route::put('{department}', [\App\Http\Controllers\Department\DepartmentController::class, 'update']);
+        Route::delete('{department}', [\App\Http\Controllers\Department\DepartmentController::class, 'delete']);
+    });
 });
