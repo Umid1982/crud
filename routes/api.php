@@ -63,4 +63,18 @@ Route::prefix('v1')->group(function () {
         Route::put('{department}', [\App\Http\Controllers\Department\DepartmentController::class, 'update']);
         Route::delete('{department}', [\App\Http\Controllers\Department\DepartmentController::class, 'delete']);
     });
+    Route::prefix('provider')->group(function (){
+        Route::get('', [\App\Http\Controllers\Provider\ProviderController::class, 'index']);
+        Route::get('{provider}', [\App\Http\Controllers\Provider\ProviderController::class, 'show']);
+        Route::post('', [\App\Http\Controllers\Provider\ProviderController::class, 'store']);
+        Route::put('{provider}', [\App\Http\Controllers\Provider\ProviderController::class, 'update']);
+        Route::delete('{provider}', [\App\Http\Controllers\Provider\ProviderController::class, 'delete']);
+    });
+    Route::prefix('product')->group(function (){
+        Route::get('', [\App\Http\Controllers\Product\ProductController::class, 'index']);
+        Route::get('{product}', [\App\Http\Controllers\Product\ProductController::class, 'show']);
+        Route::post('', [\App\Http\Controllers\Product\ProductController::class, 'store']);
+        Route::put('{product}', [\App\Http\Controllers\Product\ProductController::class, 'update']);
+        Route::delete('{product}', [\App\Http\Controllers\Product\ProductController::class, 'delete']);
+    });
 });
