@@ -21,12 +21,12 @@ class StoreRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name_uz'=>'required|string',
-            'name_ru'=>'required|string',
-            'name_en'=>'required|string',
+            'name_uz'=>'required|string|max:100',
+            'name_ru'=>'required|string|max:100',
+            'name_en'=>'required|string|max:100',
         ];
     }
 }

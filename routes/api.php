@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\FilialController;
+use App\Http\Controllers\Department\DepartmentController;
+use App\Http\Controllers\FilialController;
 use App\Http\Controllers\MeasurementController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Provider\ProviderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,38 +45,38 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::prefix('measurement')->group(function () {
         Route::get('', [MeasurementController::class, 'index']);
-        Route::get('{measurement}', [MeasurementController::class, 'show']);
+        Route::get('{measurement}', [MeasurementController::class, 'show'])->whereNumber('measurement');
         Route::post('', [MeasurementController::class, 'store']);
-        Route::put('{measurement}', [MeasurementController::class, 'update']);
-        Route::delete('{measurement}', [MeasurementController::class, 'delete']);
+        Route::put('{measurement}', [MeasurementController::class, 'update'])->whereNumber('measurement');
+        Route::delete('{measurement}', [MeasurementController::class, 'delete'])->whereNumber('measurement');
     });
     Route::prefix('filial')->group(function () {
-        Route::get('', [\App\Http\Controllers\FilialController::class,'index']);
-        Route::get('{filial}', [\App\Http\Controllers\FilialController::class, 'show']);
-        Route::post('', [\App\Http\Controllers\FilialController::class, 'store']);
-        Route::put('{filial}', [\App\Http\Controllers\FilialController::class, 'update']);
-        Route::delete('{filial}', [\App\Http\Controllers\FilialController::class, 'delete']);
+        Route::get('', [FilialController::class,'index']);
+        Route::get('{filial}', [FilialController::class, 'show']);
+        Route::post('', [FilialController::class, 'store']);
+        Route::put('{filial}', [FilialController::class, 'update']);
+        Route::delete('{filial}', [FilialController::class, 'delete']);
     });
     Route::prefix('department')->group(function (){
 
-        Route::get('', [\App\Http\Controllers\Department\DepartmentController::class, 'index']);
-        Route::get('{department}', [\App\Http\Controllers\Department\DepartmentController::class, 'show']);
-        Route::post('', [\App\Http\Controllers\Department\DepartmentController::class, 'store']);
-        Route::put('{department}', [\App\Http\Controllers\Department\DepartmentController::class, 'update']);
-        Route::delete('{department}', [\App\Http\Controllers\Department\DepartmentController::class, 'delete']);
+        Route::get('', [DepartmentController::class, 'index']);
+        Route::get('{department}', [DepartmentController::class, 'show']);
+        Route::post('', [DepartmentController::class, 'store']);
+        Route::put('{department}', [DepartmentController::class, 'update']);
+        Route::delete('{department}', [DepartmentController::class, 'delete']);
     });
     Route::prefix('provider')->group(function (){
-        Route::get('', [\App\Http\Controllers\Provider\ProviderController::class, 'index']);
-        Route::get('{provider}', [\App\Http\Controllers\Provider\ProviderController::class, 'show']);
-        Route::post('', [\App\Http\Controllers\Provider\ProviderController::class, 'store']);
-        Route::put('{provider}', [\App\Http\Controllers\Provider\ProviderController::class, 'update']);
-        Route::delete('{provider}', [\App\Http\Controllers\Provider\ProviderController::class, 'delete']);
+        Route::get('', [ProviderController::class, 'index']);
+        Route::get('{provider}', [ProviderController::class, 'show']);
+        Route::post('', [ProviderController::class, 'store']);
+        Route::put('{provider}', [ProviderController::class, 'update']);
+        Route::delete('{provider}', [ProviderController::class, 'delete']);
     });
     Route::prefix('product')->group(function (){
-        Route::get('', [\App\Http\Controllers\Product\ProductController::class, 'index']);
-        Route::get('{product}', [\App\Http\Controllers\Product\ProductController::class, 'show']);
-        Route::post('', [\App\Http\Controllers\Product\ProductController::class, 'store']);
-        Route::put('{product}', [\App\Http\Controllers\Product\ProductController::class, 'update']);
-        Route::delete('{product}', [\App\Http\Controllers\Product\ProductController::class, 'delete']);
+        Route::get('', [ProductController::class, 'index']);
+        Route::get('{product}', [ProductController::class, 'show']);
+        Route::post('', [ProductController::class, 'store']);
+        Route::put('{product}', [ProductController::class, 'update']);
+        Route::delete('{product}', [ProductController::class, 'delete']);
     });
 });

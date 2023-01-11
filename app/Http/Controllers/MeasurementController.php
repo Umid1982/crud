@@ -29,7 +29,7 @@ class MeasurementController extends Controller
     public function store(StoreRequest $request): JsonResponse
     {
         $data = Measurement::query()->create($request->validated());
-        return response()->json($data);
+        return response()->json($data, 201);
     }
 
     /**
