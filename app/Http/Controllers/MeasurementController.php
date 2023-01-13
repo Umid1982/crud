@@ -68,6 +68,7 @@ class MeasurementController extends Controller
      */
     public function delete(Measurement $measurement): JsonResponse
     {
+        $measurement->products()->delete();
         $measurement->delete();
 
         return response()->json([

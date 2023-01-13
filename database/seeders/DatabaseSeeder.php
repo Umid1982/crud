@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Department;
 use App\Models\Filial;
 use App\Models\Measurement;
+use App\Models\Product;
+use App\Models\Provider;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,7 +26,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Measurement::factory(10)->create();
-//        Filial::factory(10)->create();
+        Measurement::factory(5)->create();
+        Filial::factory(5)->create();
+        Department::factory(5)->create();
+        Product::factory(5)->create();
+        Provider::factory(5)->create();
     }
 }

@@ -24,7 +24,6 @@ class DepartmentController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -34,20 +33,21 @@ class DepartmentController extends Controller
     public function store(StoreRequest $request): JsonResponse
     {
         $data = Department::query()->create($request->validated());
-        return response()->json($data);
+        return response()->json($data, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Department $department
+     * @param int $id
      * @return JsonResponse
      */
-    public function show(Department $department): JsonResponse
+    public function show(int $id): JsonResponse
     {
-        return response()->json($department);
-    }
+        $data = Department::query()->findOrFail($id);
 
+        return response()->json($data);
+    }
 
 
     /**
@@ -73,7 +73,7 @@ class DepartmentController extends Controller
     {
         $department->delete();
         return response()->json([
-               'message'=>'Успешно удалено!'
+            'message' => 'Успешно удалено!'
         ]);
     }
 }

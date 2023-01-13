@@ -60,10 +60,10 @@ Route::prefix('v1')->group(function () {
     Route::prefix('department')->group(function (){
 
         Route::get('', [DepartmentController::class, 'index']);
-        Route::get('{department}', [DepartmentController::class, 'show']);
+        Route::get('{department}', [DepartmentController::class, 'show'])->whereNumber('department');
         Route::post('', [DepartmentController::class, 'store']);
-        Route::put('{department}', [DepartmentController::class, 'update']);
-        Route::delete('{department}', [DepartmentController::class, 'delete']);
+        Route::put('{department}', [DepartmentController::class, 'update'])->whereNumber('department');
+        Route::delete('{department}', [DepartmentController::class, 'delete'])->whereNumber('department');
     });
     Route::prefix('provider')->group(function (){
         Route::get('', [ProviderController::class, 'index']);
