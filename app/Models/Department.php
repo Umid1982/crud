@@ -11,4 +11,14 @@ class Department extends Model
 
     protected $table = 'departments';
     protected $guarded = false;
+
+    public function filial()
+    {
+        return $this->belongsTo(Filial::class,'filial_id','id');
+    }
+
+    public function prodocts()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

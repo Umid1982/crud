@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Department;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class DepartmentTest extends TestCase
@@ -15,7 +16,7 @@ class DepartmentTest extends TestCase
      *
      * @return void
      */
-    public function test_successful_index()
+    public function test_successful_index(): void
     {
         $this->get('/api/v1/department')->assertOk()
             ->assertJsonStructure([
@@ -90,7 +91,29 @@ class DepartmentTest extends TestCase
             ]);
     }
     public function test_fail_create_data_with_long_name(){
-        $department = Department::factory()->raw();
+        $data = Department::factory()->raw([
+            'name_ru'=>Str::random(120)
+        ]);
+        $department = Department::query()->inRandomOrder()->first();
+        $this->put('/api/v1/department/' . $department->id, $data, $this->headers())
+        ->assertStatus(422)
+        ->assertJsonStructure([
+            'message',
+            'errors'=>[
+                'name_ru'
+            ]
+        ]);
+    }
+    public function test_successful_delete()
+    {
+        $department = Department::query()->inRandomOrder()->first();
 
+        $this->delete('/api/v1/department/' . $department->id, [], $this->headers())
+            ->assertOk()
+            ->assertJsonStructure([
+                'message'
+            ]);
+
+        $this->assertModelMissing($department);
     }
 }

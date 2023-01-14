@@ -7,8 +7,7 @@ use App\Http\Requests\Department\StoreRequest;
 use App\Http\Requests\Department\UpdateRequest;
 use App\Models\Department;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+
 
 class DepartmentController extends Controller
 {
@@ -33,7 +32,7 @@ class DepartmentController extends Controller
     public function store(StoreRequest $request): JsonResponse
     {
         $data = Department::query()->create($request->validated());
-        return response()->json($data, 201);
+        return response()->json($data,201);
     }
 
     /**
@@ -71,6 +70,7 @@ class DepartmentController extends Controller
      */
     public function delete(Department $department): JsonResponse
     {
+        $department->prodocts()->delete();
         $department->delete();
         return response()->json([
             'message' => 'Успешно удалено!'
