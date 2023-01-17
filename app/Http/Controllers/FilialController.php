@@ -23,7 +23,6 @@ class FilialController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -33,13 +32,13 @@ class FilialController extends Controller
     public function store(StoreRequest $request): \Illuminate\Http\JsonResponse
     {
         $data = Filial::query()->create($request->validated());
-        return response()->json($data);
+        return response()->json($data, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return JsonResponse
      */
     public function show(int $id): JsonResponse
@@ -55,7 +54,7 @@ class FilialController extends Controller
      * @param Filial $filial
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateRequest $request,Filial $filial): \Illuminate\Http\JsonResponse
+    public function update(UpdateRequest $request, Filial $filial): \Illuminate\Http\JsonResponse
     {
         $filial->update($request->validated());
         return response()->json($filial);
@@ -69,9 +68,14 @@ class FilialController extends Controller
      */
     public function delete(Filial $filial): \Illuminate\Http\JsonResponse
     {
+        $departments = $filial->departments;
+        foreach ($departments as $department) {
+            $department->products()->delete();
+            $department->delete();
+        }
         $filial->delete();
-        return \response()->json(['
-        Объект удален!
-        ']);
+        return \response()->json([
+            'message' => 'Объект удален!'
+        ]);
     }
 }

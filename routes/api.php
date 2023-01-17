@@ -52,10 +52,10 @@ Route::prefix('v1')->group(function () {
     });
     Route::prefix('filial')->group(function () {
         Route::get('', [FilialController::class,'index']);
-        Route::get('{filial}', [FilialController::class, 'show']);
+        Route::get('{filial}', [FilialController::class, 'show'])->whereNumber('filial');
         Route::post('', [FilialController::class, 'store']);
-        Route::put('{filial}', [FilialController::class, 'update']);
-        Route::delete('{filial}', [FilialController::class, 'delete']);
+        Route::put('{filial}', [FilialController::class, 'update'])->whereNumber('filial');
+        Route::delete('{filial}', [FilialController::class, 'delete'])->whereNumber('filial');
     });
     Route::prefix('department')->group(function (){
 
@@ -74,9 +74,9 @@ Route::prefix('v1')->group(function () {
     });
     Route::prefix('product')->group(function (){
         Route::get('', [ProductController::class, 'index']);
-        Route::get('{product}', [ProductController::class, 'show']);
+        Route::get('{product}', [ProductController::class, 'show'])->whereNumber('product');
         Route::post('', [ProductController::class, 'store']);
-        Route::put('{product}', [ProductController::class, 'update']);
-        Route::delete('{product}', [ProductController::class, 'delete']);
+        Route::put('{product}', [ProductController::class, 'update'])->whereNumber('product');
+        Route::delete('{product}', [ProductController::class, 'delete'])->whereNumber('product');
     });
 });

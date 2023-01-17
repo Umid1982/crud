@@ -70,7 +70,7 @@ class DepartmentController extends Controller
      */
     public function delete(Department $department): JsonResponse
     {
-        $department->prodocts()->delete();
+        $department->products()->delete();
         $department->delete();
         return response()->json([
             'message' => 'Успешно удалено!'

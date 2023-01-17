@@ -50,8 +50,8 @@ class DepartmentTest extends TestCase
     public function test_fail_show_with_wrong_id()
     {
         $department_id = 1000000;
-        $a = $this->get('/api/v1/department/' . $department_id, $this->headers());
-        $a->assertNotFound();
+         $this->get('/api/v1/department/' . $department_id, $this->headers())
+        ->assertNotFound();
     }
     public function test_fail_show_with_string_id(){
         $department_id = "asdfg";
@@ -92,7 +92,9 @@ class DepartmentTest extends TestCase
     }
     public function test_fail_create_data_with_long_name(){
         $data = Department::factory()->raw([
-            'name_ru'=>Str::random(120)
+            'name_uz'=>Str::random(120),
+            'name_ru'=>Str::random(120),
+            'name_en'=>Str::random(120),
         ]);
         $department = Department::query()->inRandomOrder()->first();
         $this->put('/api/v1/department/' . $department->id, $data, $this->headers())

@@ -22,9 +22,9 @@ abstract class TestCase extends BaseTestCase
 
         Artisan::call('migrate');
         Measurement::factory(5)->create();
-        Filial::factory(5)->create();
-        Department::factory(5)->create();
-        Product::factory(5)->create();
+        Filial::factory(10)->create();
+        Department::factory(10)->create();
+        Product::factory(30)->create();
         Provider::factory(5)->create();
     }
 

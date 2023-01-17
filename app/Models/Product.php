@@ -11,4 +11,16 @@ class Product extends Model
 
     protected $table = 'products';
     protected $guarded = false;
+
+    public function measurement(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Measurement::class,'measurement_id','id');
+    }
+
+    public function department(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
+
+
 }

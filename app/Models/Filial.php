@@ -11,4 +11,9 @@ class Filial extends Model
 
     protected $table = 'filials';
     protected $guarded = false;
+
+    public function departments()
+    {
+        return $this->hasMany(Department::class, 'filial_id', 'id');
+    }
 }

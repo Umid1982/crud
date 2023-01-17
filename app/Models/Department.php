@@ -17,7 +17,7 @@ class Department extends Model
         return $this->belongsTo(Filial::class,'filial_id','id');
     }
 
-    public function prodocts()
+    public function products()
     {
         return $this->hasMany(Product::class);
     }
