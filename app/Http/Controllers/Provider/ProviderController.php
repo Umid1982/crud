@@ -32,7 +32,7 @@ class ProviderController extends Controller
     public function store(StoreRequest $request): JsonResponse
     {
         $data = Provider::query()->create($request->validated());
-        return response()->json($data);
+        return response()->json($data,201);
     }
 
     /**

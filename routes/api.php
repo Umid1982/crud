@@ -67,10 +67,10 @@ Route::prefix('v1')->group(function () {
     });
     Route::prefix('provider')->group(function (){
         Route::get('', [ProviderController::class, 'index']);
-        Route::get('{provider}', [ProviderController::class, 'show']);
+        Route::get('{provider}', [ProviderController::class, 'show'])->whereNumber('provider');
         Route::post('', [ProviderController::class, 'store']);
-        Route::put('{provider}', [ProviderController::class, 'update']);
-        Route::delete('{provider}', [ProviderController::class, 'delete']);
+        Route::put('{provider}', [ProviderController::class, 'update'])->whereNumber('provider');
+        Route::delete('{provider}', [ProviderController::class, 'delete'])->whereNumber('provider');
     });
     Route::prefix('product')->group(function (){
         Route::get('', [ProductController::class, 'index']);
