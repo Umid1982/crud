@@ -6,9 +6,11 @@ namespace Database\Seeders;
 use App\Models\Department;
 use App\Models\Filial;
 use App\Models\Invoice;
+use App\Models\InvoiceItem;
 use App\Models\Measurement;
 use App\Models\Product;
 use App\Models\Provider;
+use App\Models\Storage;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -33,5 +35,7 @@ class DatabaseSeeder extends Seeder
         Product::factory(5)->create();
         Provider::factory(5)->create();
         Invoice::factory(10)->create();
+        InvoiceItem::factory(10)->create();
+        Storage::factory(5)->create();
     }
 }

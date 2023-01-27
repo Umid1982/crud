@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'provider_id' => 'required|integer',
             'total_sum' => 'required|numeric',
-            'invoice_items'=>'required|array',
+            'invoice_items'=>'nullable|array',
             'invoice_items.*.product_id'=>'required|integer|exists:products,id',
             'invoice_items.*.amount'=>'required|numeric',
             'invoice_items.*.price'=>'required|numeric',

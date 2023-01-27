@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('provider_id')->constrained('providers');
+            $table->foreignId('provider_id');
             $table->decimal('total_sum')->nullable();
             $table->boolean('accept')->default(false);
             $table->boolean('is_paid')->default(false);

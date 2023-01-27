@@ -17,7 +17,7 @@ class MeasurementTest extends TestCase
      *
      * @return void
      */
-    public function test_successful_index()
+    public function test_successful_index(): void
     {
         $this->get('/api/v1/measurement')
             ->assertOk()

@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('name_ru')->nullable();
             $table->string('name_en')->nullable();
             $table->string('image');
-            $table->foreignId('measurement_id')->constrained('measurements');
+            $table->foreignId('measurement_id');
             $table->decimal('price')->nullable();
-            $table->foreignId('department_id')->constrained('departments');
+            $table->foreignId('department_id');
             $table->string('barcode');
             $table->timestamps();
         });

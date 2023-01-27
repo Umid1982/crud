@@ -27,10 +27,12 @@ class InvoiceController extends Controller
         $validated = $request->validated();
 
         $data = Invoice::query()->create($validated);
+        if (!empty($validated['invoice_items'])){
+            $data->invoiceItems()->createMany($validated['invoice_items']);
+        }
 
-        $data->invoiceItems()->createMany($validated['invoice_items']);
 
-        return response()->json($data);
+        return response()->json($data,201);
     }
 
     public function accept(AcceptRequest $request): \Illuminate\Http\JsonResponse

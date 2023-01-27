@@ -16,15 +16,16 @@ class InvoiceItemController extends Controller
         return response()->json($data);
     }
 
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): \Illuminate\Http\JsonResponse
     {
         $data = [];
         $validated = $request->validated();
-        foreach ($validated['invoice_items'] as $invoice_item) {
-            $invoice_item['invoice_id'] = $validated['invoice_id'];
-            $data[] = InvoiceItem::query()->create($invoice_item);
-        }
-        return response()->json($data);
+            foreach ($validated['invoice_items'] as $invoice_item) {
+                $invoice_item['invoice_id'] = $validated['invoice_id'];
+                $data[] = InvoiceItem::query()->create($invoice_item);
+            }
+
+        return response()->json($data,201);
 
     }
 }

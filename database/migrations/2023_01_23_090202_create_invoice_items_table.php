@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('invoice_id')->constrained('invoices');
-            $table->foreignId('product_id')->constrained('products');
+            $table->foreignId('invoice_id');
+            $table->foreignId('product_id');
             $table->decimal('price')->nullable();
             $table->decimal('amount')->nullable();
             $table->timestamps();
