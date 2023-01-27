@@ -21,13 +21,13 @@ class StoreRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'invoice_id' => 'required|integer',
-            'product_id' => 'required|integer',
-            'price' => 'required|numeric',
-            'amount' => 'required|numeric',
+            'invoice_id' => 'required|integer|exists:invoices,id',
+            'invoice_items.*.product_id' => 'required|integer|exists:products,id',
+            'invoice_items.*.price' => 'required|numeric',
+            'invoice_items.*.amount' => 'required|numeric',
         ];
     }
 }

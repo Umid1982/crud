@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Department;
 use App\Models\Filial;
+use App\Models\Invoice;
 use App\Models\Measurement;
 use App\Models\Product;
 use App\Models\Provider;
@@ -31,5 +32,6 @@ class DatabaseSeeder extends Seeder
         Department::factory(5)->create();
         Product::factory(5)->create();
         Provider::factory(5)->create();
+        Invoice::factory(10)->create();
     }
 }

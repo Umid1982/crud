@@ -79,4 +79,17 @@ Route::prefix('v1')->group(function () {
         Route::put('{product}', [ProductController::class, 'update'])->whereNumber('product');
         Route::delete('{product}', [ProductController::class, 'delete'])->whereNumber('product');
     });
+    Route::prefix('invoice')->group(function (){
+        Route::get('', [\App\Http\Controllers\Invoice\InvoiceController::class, 'index']);
+        Route::get('{invoice}', [\App\Http\Controllers\Invoice\InvoiceController::class, 'show'])->whereNumber('invoice');
+        Route::post('',[\App\Http\Controllers\Invoice\InvoiceController::class,'store']);
+        Route::post('accept',[\App\Http\Controllers\Invoice\InvoiceController::class,'accept']);
+    });
+    Route::prefix('invoice-items')->group(function (){
+        Route::get('',[\App\Http\Controllers\InvoiceItem\InvoiceItemController::class,'index']);
+        Route::post('', [\App\Http\Controllers\InvoiceItem\InvoiceItemController::class, 'store']);
+    });
+    Route::prefix('storage')->group(function (){
+        Route::get('',[\App\Http\Controllers\Storage\StorageController::class,'index']);
+    });
 });

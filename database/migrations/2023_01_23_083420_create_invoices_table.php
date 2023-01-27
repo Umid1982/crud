@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('provider_id')->constrained('providers');
             $table->decimal('total_sum')->nullable();
-            $table->tinyInteger('accept');
-            $table->tinyInteger('is_paid');
+            $table->boolean('accept')->default(false);
+            $table->boolean('is_paid')->default(false);
             $table->timestamps();
         });
     }

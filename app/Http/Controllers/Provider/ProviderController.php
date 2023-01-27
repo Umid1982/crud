@@ -68,6 +68,7 @@ class ProviderController extends Controller
      */
     public function delete(Provider $provider): JsonResponse
     {
+        $provider->invoices()->delete();
         $provider->delete();
         return response()->json([
             'message'=>'successfully deleted!'

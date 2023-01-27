@@ -11,4 +11,9 @@ class Provider extends Model
 
     protected $table = 'providers';
     protected $guarded = false;
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class, 'provider_id', 'id');
+    }
 }

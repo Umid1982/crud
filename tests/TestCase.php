@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Models\Department;
 use App\Models\Filial;
+use App\Models\Invoice;
 use App\Models\Measurement;
 use App\Models\Product;
 use App\Models\Provider;
@@ -26,6 +27,7 @@ abstract class TestCase extends BaseTestCase
         Department::factory(10)->create();
         Product::factory(30)->create();
         Provider::factory(5)->create();
+        Invoice::factory(7)->create();
     }
 
     protected function headers(): array

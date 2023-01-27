@@ -14,6 +14,6 @@ class Storage extends Model
 
     public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Product::class, 'product_id', 'products');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }
