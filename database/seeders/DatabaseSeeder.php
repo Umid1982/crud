@@ -29,7 +29,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Measurement::factory(5)->create();
+        $this->call([
+            MeasurementSeedder::class
+        ]);
         Filial::factory(5)->create();
         Department::factory(5)->create();
         Product::factory(5)->create();

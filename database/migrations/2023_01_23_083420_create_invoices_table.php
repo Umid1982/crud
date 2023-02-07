@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('provider_id');
             $table->decimal('total_sum')->nullable();
-            $table->boolean('accept')->default(false);
+            $table->boolean('accept')->default(null);
             $table->boolean('is_paid')->default(false);
             $table->timestamps();
         });
